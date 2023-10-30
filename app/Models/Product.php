@@ -12,11 +12,6 @@ class Product extends Model
 
     protected $guarded = [];
 
-    public function images()
-    {
-        return $this->hasMany(ProductImage::class);
-    }
-
     public function author()
     {
         return $this->belongsTo(Author::class);

@@ -175,7 +175,7 @@
                             @foreach($products as $product)
                                 <div class="col-lg-4 col-md-6 col-sm-6">
                                     <div class="product__discount__item product__item">
-                                        <div class="product__discount__item__pic set-bg"
+                                        <div class="product__discount__item__pic set-bg-prod"
                                             data-setbg="{{$product->image}}">
                                             @if ($product->discount > 0)
                                                 <div class="product__discount__percent">-{{$product->discount}}%</div>

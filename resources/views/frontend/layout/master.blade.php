@@ -38,7 +38,7 @@
         <div class="humberger__menu__cart">
             <ul>
                 <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                <li><a href="{{route('cart')}}"><i class="fa fa-shopping-basket"></i> <span>{{ session('cart') !== null ? count(session('cart')) : 0 }}</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
         </div>
@@ -88,7 +88,7 @@
                         <div class="header__top__left">
                             <ul>
                                 <li><i class="fa fa-envelope"></i> bookstore@yomail.com</li>
-                                <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 99,000đ</li>
+                                <li>Miễn phí vận chuyển cho tất cả đơn hàng từ 199,000đ</li>
                             </ul>
                         </div>
                     </div>
@@ -137,7 +137,7 @@
                     <div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
+                            <li><a href="{{route('cart')}}"><i class="fa fa-shopping-basket"></i> <span>{{ session('cart') !== null ? count(session('cart')) : 0 }}</span></a></li>
                         </ul>
                         <div class="header__cart__price">Tổng tiền: <span>150,000đ</span></div>
                     </div>
@@ -266,7 +266,7 @@
         </div>
     </footer>
     <!-- Footer Section End -->
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Js Plugins -->
     <script src="/assets/frontend/js/jquery-3.3.1.min.js"></script>
     <script src="/assets/frontend/js/bootstrap.min.js"></script>

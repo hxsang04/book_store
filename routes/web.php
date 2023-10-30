@@ -7,6 +7,8 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\PublisherController;
 
 use App\Http\Controllers\Frontend\ShopController;
+use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\CheckoutController;
 
 /*
 |--------------------------------------------------------------------------
@@ -67,3 +69,15 @@ Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/cua-hang', [ShopController::class, 'shop'])->name('shop');
 Route::get('/danh-muc/{category}', [ShopController::class, 'getProductByCategory'])->name('category');
 Route::get('/san-pham/{product}', [ShopController::class, 'product'])->name('product');
+
+Route::get('/gio-hang', [CartController::class, 'cart'])->name('cart');
+Route::get('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+Route::get('/cart/increase/{product_id}', [CartController::class, 'increase'])->name('cart.increase');
+Route::get('/cart/decrease/{product_id}', [CartController::class, 'decrease'])->name('cart.decrease');
+Route::get('/cart/delete/{product_id}', [CartController::class, 'delete'])->name('cart.delete');
+
+
+Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
+Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');
+Route::get('/checkout/vnPayCheck', [CheckoutController::class, 'vnPayCheck'])->name('checkout.vnpay');
+Route::get('/dat-hang/thanh-cong', [CheckoutController::class, 'notification'])->name('checkout.success');

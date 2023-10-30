@@ -24,7 +24,7 @@
     <section class="product-details spad">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6">
+                <div class="col-lg-4 col-md-6">
                     <div class="product__details__pic">
                         <div class="product__details__pic__item">
                             <img class="product__details__pic__item--large"
@@ -32,58 +32,60 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="product__details__text">
-                        <h3>{{$product->name}}</h3>
-                        <div class="product__details__rating">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star-half-o"></i>
-                            <span>(18 reviews)</span>
-                        </div>
-                        <div class="product__details__price">{{convertPrice($product->price)}} 
-                            @if ($product->discount != 0)
-                                <span class="old-price">{{convertPrice(initialPrice($product->price,$product->discount))}}</span>
-                                <span class="discount-percent">-{{$product->discount}}%</span>
-                            @endif
-                        </div>
-                        {{-- <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
-                            vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
-                            quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p> --}}
-                        <div class="product__details__quantity">
-                            <div class="quantity">
-                                <div class="pro-qty">
-                                    <input type="text" value="1">
+                <div class="col-lg-5 col-md-6">
+                    <form action="{{route('cart.add', $product)}}">
+                        <div class="product__details__text">
+                            <h3>{{$product->name}}</h3>
+                            <div class="product__details__rating">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star-half-o"></i>
+                                <span>(18 reviews)</span>
+                            </div>
+                            <div class="product__details__price">{{convertPrice($product->price)}} 
+                                @if ($product->discount != 0)
+                                    <span class="old-price">{{convertPrice(initialPrice($product->price,$product->discount))}}</span>
+                                    <span class="discount-percent">-{{$product->discount}}%</span>
+                                @endif
+                            </div>
+                            {{-- <p>Mauris blandit aliquet elit, eget tincidunt nibh pulvinar a. Vestibulum ac diam sit amet quam
+                                vehicula elementum sed sit amet dui. Sed porttitor lectus nibh. Vestibulum ac diam sit amet
+                                quam vehicula elementum sed sit amet dui. Proin eget tortor risus.</p> --}}
+                            <div class="product__details__quantity">
+                                <div class="quantity">
+                                    <div class="pro-qty shop">
+                                        <input type="text" value="1" name="quantity">
+                                    </div>
                                 </div>
                             </div>
+                            <button type="submit" class="primary-btn border-0">Thêm vào giỏ hàng</button>
+                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            <ul>
+                                <li>
+                                    <b>Tình trạng</b>
+                                    @if ($product->quantity > 0)
+                                        <span class="text-success">Còn hàng</span>
+                                    @else
+                                        <span class="text-danger">Hết hàng</span>
+                                    @endif
+                                </li>
+                                <li><b>Danh mục</b> {{$product->category->name}}</li>
+                                <li><b>Tác giả</b> {{$product->author->name}}</li>
+                                <li><b>Nhà xuất bản</b>NXB {{$product->publisher->name}}</li>
+                                <li><b>Chính sách đổi trả</b>Đổi trả sản phẩm trong 30 ngày</li>
+                                <li><b>Chia sẻ</b>
+                                    <div class="share">
+                                        <a href="#"><i class="fa fa-facebook"></i></a>
+                                        <a href="#"><i class="fa fa-twitter"></i></a>
+                                        <a href="#"><i class="fa fa-instagram"></i></a>
+                                        <a href="#"><i class="fa fa-google-plus"></i></a>
+                                    </div>
+                                </li>
+                            </ul>
                         </div>
-                        <a href="#" class="primary-btn">Thêm vào giỏ hàng</a>
-                        <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
-                        <ul>
-                            <li>
-                                <b>Tình trạng</b>
-                                @if ($product->quantity > 0)
-                                    <span class="text-success">Còn hàng</span>
-                                @else
-                                    <span class="text-danger">Hết hàng</span>
-                                @endif
-                            </li>
-                            <li><b>Danh mục</b> {{$product->category->name}}</li>
-                            <li><b>Tác giả</b> {{$product->author->name}}</li>
-                            <li><b>Nhà xuất bản</b>NXB {{$product->publisher->name}}</li>
-                            <li><b>Chính sách đổi trả</b>Đổi trả sản phẩm trong 30 ngày</li>
-                            <li><b>Chia sẻ</b>
-                                <div class="share">
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                    <a href="#"><i class="fa fa-google-plus"></i></a>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                    </form>
                 </div>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
@@ -169,7 +171,7 @@
                 @foreach($relatedProducts as $product)
                     <div class="col-lg-3">
                         <div class="product__discount__item product__item">
-                            <div class="product__discount__item__pic set-bg"
+                            <div class="product__discount__item__pic set-bg-prod"
                                 data-setbg="{{$product->image}}">
                                 @if ($product->discount > 0)
                                     <div class="product__discount__percent">-{{$product->discount}}%</div>

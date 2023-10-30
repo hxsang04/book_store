@@ -127,7 +127,7 @@
                         <label class="form-label me-2">Hình ảnh
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="file" name="image" class="form-control" id="product-img" accept="image/jpg, image/jpeg, image/png" />
+                        <input type="file" name="image" class="form-control" id="product-img" accept="image/*" />
                         @error('image')
                             <p class="text-danger">{{$message}}</p>
                         @enderror

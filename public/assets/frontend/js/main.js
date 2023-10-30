@@ -39,6 +39,11 @@
         $(this).css('background-image', 'url(' + bg + ')');
     });
 
+    $('.set-bg-prod').each(function () {
+        var bg = $(this).data('setbg');
+        $(this).css('background-image', 'url(' + bg + ')');
+    });
+
     //Humberger Menu
     $(".humberger__open").on('click', function () {
         $(".humberger__menu__wrapper").addClass("show__humberger__menu__wrapper");
@@ -176,12 +181,12 @@
         max: maxPrice,
         values: [minPrice, maxPrice],
         slide: function (event, ui) {
-            minamount.val('$' + ui.values[0]);
-            maxamount.val('$' + ui.values[1]);
+            minamount.val(ui.values[0] + 'đ');
+            maxamount.val(ui.values[1] + 'đ');
         }
     });
-    minamount.val('$' + rangeSlider.slider("values", 0));
-    maxamount.val('$' + rangeSlider.slider("values", 1));
+    minamount.val(rangeSlider.slider("values", 0) + 'đ');
+    maxamount.val(rangeSlider.slider("values", 1) + 'đ');
 
     /*--------------------------
         Select
@@ -208,20 +213,53 @@
     var proQty = $('.pro-qty');
     proQty.prepend('<span class="dec qtybtn">-</span>');
     proQty.append('<span class="inc qtybtn">+</span>');
-    proQty.on('click', '.qtybtn', function () {
-        var $button = $(this);
-        var oldValue = $button.parent().find('input').val();
-        if ($button.hasClass('inc')) {
-            var newVal = parseFloat(oldValue) + 1;
-        } else {
-            // Don't allow decrementing below zero
-            if (oldValue > 0) {
-                var newVal = parseFloat(oldValue) - 1;
+    if(proQty.hasClass('shop')){
+        proQty.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var oldValue = $button.parent().find('input').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
             } else {
-                newVal = 0;
+                // Don't allow decrementing below zero
+                if (oldValue > 1) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
             }
-        }
-        $button.parent().find('input').val(newVal);
-    });
+            $button.parent().find('input').val(newVal);
+        });
+    }
+    else{
+        proQty.on('click', '.qtybtn', function () {
+            var $button = $(this);
+            var product_id = $button.parent().find('input[id="product_id"]').val();
+            var oldValue = $button.parent().find('input[name="quantity"]').val();
+            if ($button.hasClass('inc')) {
+                var newVal = parseFloat(oldValue) + 1;
+                window.location.href = '/cart/increase/' + product_id;
+            } else {
+                // Don't allow decrementing below zero
+                if (oldValue > 0) {
+                    var newVal = parseFloat(oldValue) - 1;
+                } else {
+                    newVal = 0;
+                }
+                window.location.href = '/cart/decrease/' + product_id;
+            }
+            $button.parent().find('input').val(newVal);
+        });
+    }
 
 })(jQuery);
+
+function previewImg(fileInput, showImg){
+    if(fileInput.files && fileInput.files[0]){
+        const reader = new FileReader();
+        
+        reader.onload = (e) =>{ 
+            document.getElementById(showImg).setAttribute('src', e.target.result)
+        }
+        reader.readAsDataURL(fileInput.files[0]);
+    }
+}
