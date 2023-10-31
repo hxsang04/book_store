@@ -15,6 +15,11 @@
             <div class="card-body p-4">
                 <div class="d-flex align-items-center justify-content-between">
                     <h5 class="card-title fw-semibold mb-4">Sản phẩm</h5>
+                    <form class="product-search d-flex">
+                        <input type="text" class="border border-1 border-primary rounded px-2" value="{{request('product_code')}}"
+                        placeholder="Mã sản phẩm" name="product_code" style="margin-right: 10px">
+                        <button type="submit" class="btn btn-primary">Tìm kiếm</button>
+                    </form>
                     <a href="{{route('product.create')}}" class="btn btn-primary m-1">Tạo mới</a>
                 </div>
                 <div class="table-responsive">
@@ -22,10 +27,13 @@
                         <thead class="text-dark fs-4">
                             <tr>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Id</h6>
+                                    <h6 class="fw-semibold mb-0">Thứ tự</h6>
                                 </th>
                                 <th class="border-bottom-0">
                                     <h6 class="fw-semibold mb-0">Tên / Danh mục</h6>
+                                </th>
+                                <th class="border-bottom-0 text-center">
+                                    <h6 class="fw-semibold mb-0">Mã sách</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Giảm giá (%)</h6>
@@ -45,10 +53,10 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($products as $product)
+                            @foreach($products as $key=>$product)
                                 <tr>
                                     <td class="border-bottom-0">
-                                        <h6 class="fw-semibold mb-0">{{$product->id}}</h6>
+                                        <h6 class="fw-semibold mb-0">{{$key+1}}</h6>
                                     </td>
                                     <td class="border-bottom-0 d-flex align-items-center">
                                         <img class="rounded-1" style="width: 40px" src="{{$product->image}}" alt="">
@@ -56,6 +64,9 @@
                                             <h6 class="fw-semibold mb-1">{{$product->name}}</h6>
                                             <span class="fw-normal">{{$product->category->name}}</span> 
                                         </div>
+                                    </td>
+                                    <td class="border-bottom-0 text-center">
+                                        <h6 class="fw-semibold mb-0">{{$product->product_code}}</h6>
                                     </td>
                                     <td class="border-bottom-0 text-center">
                                         <h6 class="fw-semibold mb-0">{{($product->discount)}}</h6>

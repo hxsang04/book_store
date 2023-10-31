@@ -34,6 +34,16 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="product_code" class="form-label">Mã sách
+                            <span class="text-danger">*</span> 
+                        </label>
+                        <input type="text" class="form-control" name="product_code" id="product_code">
+                        @error('product_code')
+                            <p class="text-danger">{{$message}}</p>
+                        @enderror
+                    </div>
+
+                    <div class="mb-3">
                         <label for="publisher" class="form-label">Nhà xuất bản
                             <span class="text-danger">*</span>
                         </label>
@@ -90,7 +100,7 @@
 
                     <div class="mb-3">
                         <label for="discount" class="form-label">Chiết khấu (%)</label>
-                        <input type="text" class="form-control" name="discount" id="discount">
+                        <input type="text" value="0" class="form-control" name="discount" id="discount">
                         @error('discount')
                             <p class="text-danger">{{$message}}</p>
                         @enderror

@@ -8,8 +8,13 @@ use App\Models\Order;
 
 class OrderController extends Controller
 {
-    public function index(){
-        $orders = Order::orderByDesc('id')->paginate(5);
+    public function index(Request $request){
+        $status = $request->status;
+        $orders = Order::orderByDesc('id');
+        if(isset($status)){
+            $orders = $orders->where('status', $status);
+        }
+        $orders = $orders->paginate(10);
         return view('admin.order.list', compact('orders'));
     }
 
@@ -21,6 +26,6 @@ class OrderController extends Controller
         $order->status = 3;
         $order->save();
 
-        return redirect()->back()->with('success', 'Confirm order successfully.');
+        return redirect()->back()->with('success', 'Đơn hàng đã được xác nhận.');
     }
 }

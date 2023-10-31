@@ -94,4 +94,8 @@ class ShopController extends Controller
 
         return $products;
     }
+
+    public function contact(){
+        return view('frontend.contact');
+    }
 }

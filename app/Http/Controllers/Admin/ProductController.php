@@ -19,13 +19,13 @@ class ProductController extends Controller
      */
     public function index(Request $request)
     {   
-        $keyword = $request->input('search');
+        $product_code = $request->input('product_code');
 
-        $products = Product::when($keyword, function($query, $keyword){
-                $query->where('name', 'like', '%'.$keyword.'%');
+        $products = Product::when($product_code, function($query, $product_code){
+                $query->where('product_code', $product_code);
             })
             ->orderByDesc('id')
-            ->paginate(10);
+            ->paginate(5);
         return view('admin.product.list', compact('products'));
     }
 

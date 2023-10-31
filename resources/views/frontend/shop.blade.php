@@ -147,22 +147,26 @@
                         <div class="filter__item">
                             <div class="row align-items-center">
                                 <div class="col-lg-6">
-                                    <div class="filter__sort">
-                                        <span>Sắp xếp:</span>
-                                        <select name="sort_by" onchange="this.form.submit()">
-                                            <option {{ request('sort_by') == 'lastest' ? 'selected' : ''}} value="latest">Mới nhất</option>
-                                            <option {{ request('sort_by') == 'oldest' ? 'selected' : ''}} value="oldest">Cũ nhất</option>
-                                            <option {{ request('sort_by') == 'price-ascending' ? 'selected' : ''}} value="price-ascending">Giá tăng dần</option>
-                                            <option {{ request('sort_by') == 'price-desending' ? 'selected' : ''}} value="price-desending">Giá giảm dần</option>
-                                            <option {{ request('sort_by') == 'discount' ? 'selected' : ''}} value="discount">Giảm giá</option>
-                                        </select>
+                                    @if(request('search'))
+                                        <h4>Kết quả tìm kiếm cho từ khóa: "{{request('search')}}"</h4>
+                                    @else
+                                        <div class="filter__sort">
+                                            <span>Sắp xếp:</span>
+                                            <select name="sort_by" onchange="this.form.submit()">
+                                                <option {{ request('sort_by') == 'lastest' ? 'selected' : ''}} value="latest">Mới nhất</option>
+                                                <option {{ request('sort_by') == 'oldest' ? 'selected' : ''}} value="oldest">Cũ nhất</option>
+                                                <option {{ request('sort_by') == 'price-ascending' ? 'selected' : ''}} value="price-ascending">Giá tăng dần</option>
+                                                <option {{ request('sort_by') == 'price-desending' ? 'selected' : ''}} value="price-desending">Giá giảm dần</option>
+                                                <option {{ request('sort_by') == 'discount' ? 'selected' : ''}} value="discount">Giảm giá</option>
+                                            </select>
 
-                                        <select name="show" onchange="this.form.submit()">
-                                            <option {{ request('show') == '9' ? 'selected' : ''}} value="9">9</option>
-                                            <option {{ request('show') == '6' ? 'selected' : ''}} value="6">6</option>
-                                            <option {{ request('show') == '12' ? 'selected' : ''}} value="12">12</option>
-                                        </select>
-                                    </div>
+                                            <select name="show" onchange="this.form.submit()">
+                                                <option {{ request('show') == '9' ? 'selected' : ''}} value="9">9</option>
+                                                <option {{ request('show') == '6' ? 'selected' : ''}} value="6">6</option>
+                                                <option {{ request('show') == '12' ? 'selected' : ''}} value="12">12</option>
+                                            </select>
+                                        </div>
+                                    @endif
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="filter__found">
@@ -182,6 +186,7 @@
                                             @endif
                                             <ul class="product__item__pic__hover">
                                                 <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="{{route('product', $product)}}"><i class="fa fa-eye"></i></a></li>
                                             </ul>
                                         </div>

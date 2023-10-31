@@ -28,6 +28,10 @@
                 <!-- Sidebar navigation-->
                 <nav class="sidebar-nav scroll-sidebar" data-simplebar="">
                     <ul id="sidebarnav">
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Quản lý</span>
+                        </li>
                         <li class="sidebar-item">
                             <a class="sidebar-link" href="./index.html" aria-expanded="false">
                                 <span>
@@ -69,7 +73,15 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{route('staff.index')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-user-plus"></i>
+                                </span>
+                                <span class="hide-menu">Nhân viên</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('order.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-file-invoice"></i>
                                 </span>
@@ -77,11 +89,31 @@
                             </a>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./ui-forms.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{route('user.index')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-users"></i>
                                 </span>
                                 <span class="hide-menu">Khách hàng</span>
+                            </a>
+                        </li>
+                        <li class="nav-small-cap">
+                            <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
+                            <span class="hide-menu">Tài khoản</span>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('admin.password')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-lock"></i>
+                                </span>
+                                <span class="hide-menu">Đổi mật khẩu</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('admin.logout')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-logout"></i>
+                                </span>
+                                <span class="hide-menu">Đăng xuất</span>
                             </a>
                         </li>
                     </ul>

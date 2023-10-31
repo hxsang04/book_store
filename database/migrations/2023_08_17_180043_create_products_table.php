@@ -17,9 +17,10 @@ return new class extends Migration
             $table->unsignedBigInteger('category_id');
             $table->unsignedBigInteger('publisher_id');
             $table->string('name')->unique();
+            $table->string('product_code')->unique();
             $table->string('image');
             $table->double('price');
-            $table->integer('discount')->default;
+            $table->integer('discount')->default(0);
             $table->integer('quantity');
             $table->integer('sold')->default(0);
             $table->longText('description');

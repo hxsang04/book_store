@@ -18,12 +18,11 @@ return new class extends Migration
             $table->string('email');
             $table->string('phone');
             $table->string('address');
+            $table->string('note')->nullable();
             $table->double('total_price');
             $table->tinyInteger('payment')->comment('1: VNPay, 2: COD');
-            $table->tinyInteger('status')->comment('0: Hủy, 1: Trả hàng, 2: Chờ xác nhận, 3: Đang xử lý, 4: Đã nhận hàng');
+            $table->tinyInteger('status')->comment('0: Cancel, 1: Return, 2: Pending, 3: Inprogress, 4: delivered');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

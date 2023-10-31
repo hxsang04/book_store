@@ -20,7 +20,7 @@ class User extends Authenticatable implements CanResetPassword
      * @var array<int, string>
      */
     protected $fillable = [
-        'username',
+        'name',
         'email',
         'password',
     ];
@@ -30,11 +30,6 @@ class User extends Authenticatable implements CanResetPassword
         return Attribute::make(
             get: fn ($value) => $value != null ? \Storage::url($value) : null,
         );
-    }
-    
-
-    public function orders(){
-        return $this->hasMany(order::class);
     }
 
     /**
@@ -57,8 +52,13 @@ class User extends Authenticatable implements CanResetPassword
         'password' => 'hashed',
     ];
 
-    // public function orders()
-    // {
-    //     return $this->hasMany(Order::class);
-    // }
+    public function orders(){
+        return $this->hasMany(order::class);
+    }
+
+    public function favoriteProducts()
+    {
+        return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
+    }
+
 }
