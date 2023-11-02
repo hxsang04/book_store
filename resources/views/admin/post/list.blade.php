@@ -37,7 +37,7 @@
                                         <h6 class="fw-semibold mb-0">{{$key+1}}</h6>
                                     </td>
                                     <td class="border-bottom-0 d-flex align-items-center">
-                                        <img class="rounded-1" style="width: 40px" src="{{$post->thumbnail}}" alt="">
+                                        <img class="rounded-1" style="height: 40px" src="{{$post->thumbnail}}" alt="">
                                         <div class="m-2">
                                             <h6 class="fw-semibold mb-1">{{$post->title}}</h6>
                                             <span class="fw-normal">{{$post->postType->name}}</span> 
@@ -49,14 +49,16 @@
                                     <td class="border-bottom-0 text-center">
                                         <h6 class="fw-semibold mb-0">{{date_format($post->created_at, 'H:i:s, d/m/Y')}}</h6>
                                     </td>
-                                    <td class="border-bottom-0 text-center d-flex justify-content-center">
-                                        <a href="{{route('post.edit', $post)}}" class="btn btn-outline-secondary m-1">Sửa</a>
-                                        <form action="{{route('post.destroy', $post)}}" method="POST">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button onclick="return confirm('Bạn có chắc chắn muốn xóa thể loại này không?')"
-                                            type="submit" class="btn btn-outline-danger m-1">Xóa</button>
-                                        </form>
+                                    <td class="border-bottom-0 text-center">
+                                        <div class="d-flex justify-content-center">
+                                            <a href="{{route('post.edit', $post)}}" class="btn btn-outline-secondary m-1">Sửa</a>
+                                            <form action="{{route('post.destroy', $post)}}" method="POST">
+                                                @method('DELETE')
+                                                @csrf
+                                                <button onclick="return confirm('Bạn có chắc chắn muốn xóa thể loại này không?')"
+                                                type="submit" class="btn btn-outline-danger m-1">Xóa</button>
+                                            </form>
+                                        </div>
                                     </td>
                                 </tr>
                             @endforeach

@@ -19,6 +19,7 @@ use App\Http\Controllers\Frontend\CheckoutController;
 use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\AccountController;
 use App\Http\Controllers\Frontend\FavoriteController;
+use App\Http\Controllers\Frontend\BlogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -122,6 +123,10 @@ Route::get('/cua-hang', [ShopController::class, 'shop'])->name('shop');
 Route::get('/danh-muc/{category}', [ShopController::class, 'getProductByCategory'])->name('category');
 Route::get('/san-pham/{product}', [ShopController::class, 'product'])->name('product');
 Route::get('/lien-he', [ShopController::class, 'contact'])->name('contact');
+
+//Blog
+Route::get('/bai-viet', [BlogController::class, 'blog'])->name('blog');
+Route::get('/bai-viet/{post}', [BlogController::class, 'blogDetail'])->name('blog.detail');
 
 Route::get('/gio-hang', [CartController::class, 'cart'])->name('cart');
 Route::get('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');

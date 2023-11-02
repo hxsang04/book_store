@@ -49,6 +49,7 @@ class PostController extends Controller
                 'admin_id' => Auth::id(),
                 'title' => $request->title,
                 'content' => $request->content,
+                'view' => 0,
                 'thumbnail' => $this->saveImage($request->thumbnail),
             ]);
             
@@ -96,17 +97,19 @@ class PostController extends Controller
             'post_type_id' => 'required',
             'title' => 'required|string',
             'content' => 'required|string',
-            'thumbnail' => 'required|image',
+            'thumbnail' => 'nullable',
         ]);
         DB::beginTransaction();
         try {
             $post->post_type_id = $request->post_type_id;
             $post->title = $request->title;
             $post->content = $request->content;
-            $post->thumbnail = $this->saveImage($request->thumbnail);
+            if($request->file('thumbnail')){
+                $post->thumbnail = $this->saveImage($request->thumbnail);
+            }
             $post->save();
             DB::commit();
-            return redirect()->route('post.show', $post->id);
+            return redirect()->route('post.index');
         } catch (\Throwable $e) {
             DB::rollback();
             throw $e;
@@ -119,6 +122,6 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $post->delete();
-        return redirect()->back()->with('success', 'Delete successfully!');
+        return redirect()->back()->with('success', 'Xóa bài viết thành công!');
     }
 }

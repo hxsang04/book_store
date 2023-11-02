@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Str;
 
 class Post extends Model
 {
@@ -27,5 +28,14 @@ class Post extends Model
         return Attribute::make(
             get: fn (string $value) => \Storage::url($value),
         );
+    }
+
+    public function shortContent($text, $limit = 80) {
+        $text = strip_tags($text);
+        $text = Str::limit($text, $limit); 
+
+        $text = mb_substr($text, 0, mb_strrpos($text, ' '));
+
+        return $text . '...';
     }
 }

@@ -69,7 +69,7 @@
                         <li><a href="./blog-details.html">Blog Details</a></li>
                     </ul>
                 </li>
-                <li><a href="./blog.html">Bài viết</a></li>
+                <li><a href="{{route('blog')}}">Bài viết</a></li>
                 <li><a href="{{route('contact')}}">Liên hệ</a></li>
             </ul>
         </nav>
@@ -141,7 +141,7 @@
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Bài viết</a></li>
+                            <li><a href="{{route('blog')}}">Bài viết</a></li>
                             <li><a href="{{route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>

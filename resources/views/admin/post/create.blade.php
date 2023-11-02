@@ -44,7 +44,7 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="content" class="form-label">Mô tả
+                        <label for="content" class="form-label">Nội dung
                             <span class="text-danger">*</span>
                         </label>
                         <textarea class="form-control" name="content" id="content"></textarea>
