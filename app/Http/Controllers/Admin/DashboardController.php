@@ -17,59 +17,39 @@ class DashboardController extends Controller
 
         $data = [
             'total_product' => Product::count(),
-            'total_user' => User::count(),
             'total_order' => Order::count(),
         ];
 
         $data['total_income'] = Order::where('status', 4)->sum('total_price');
 
-        /* Xử lý lấy data cho Bar chart */
+        // /* Xử lý lấy data cho Bar chart */
         $currentYear = date('Y');
-        $currentMonth = date('m');
+        $currentMonth = $request->month ?? date('m');
 
-        $barCharData = Order::select(
-                    DB::raw('DAY(created_at) as day'),
-                    DB::raw('COUNT(*) as total_orders')
-                )
-                ->whereYear('created_at', $currentYear)
-                ->whereMonth('created_at', $currentMonth)
-                ->groupBy('day')
-                ->get()
-                ->pluck('total_orders', 'day')
-                ->toArray();
-
+        $totalSalesByDay = DB::table('orders')
+            ->select(DB::raw('DAY(created_at) as day'), DB::raw('SUM(total_price) as total_price'))
+            ->whereYear('created_at', $currentYear)
+            ->whereMonth('created_at', $currentMonth)
+            ->groupBy('day')
+            ->get()
+            ->pluck('total_price', 'day')
+            ->toArray();
+        
         // Xử lý để thêm các ngày không có đơn hàng vào mảng
         $daysInMonth = cal_days_in_month(CAL_GREGORIAN, $currentMonth, $currentYear);
         for ($day = 1; $day <= $daysInMonth; $day++) {
-            if (!array_key_exists($day, $barCharData)) {
-                $barCharData[$day] = 0;
+            if (!array_key_exists($day, $totalSalesByDay)) {
+                $totalSalesByDay[$day] = 0;
             }
         }
 
-        ksort($barCharData);
+        ksort($totalSalesByDay);
 
-        /* Xử lý lấy data cho Pie Chart */
-        $statusCounts = Order::select('status', DB::raw('COUNT(*) as count'))
-                            ->groupBy('status')
-                            ->get()
-                            ->pluck('count', 'status')
-                            ->toArray();
+        $bestSellingProducts = Product::orderByDesc('sold')->get()->take(10);
 
-        // Status mapping
-        $statusMapping = [
-            0 => 'Cancel',
-            1 => 'Return',
-            2 => 'Pending',
-            3 => 'In progress',
-            4 => 'Delivered'
-        ];
+        $latestOrders = Order::orderByDesc('id')->get()->take(10);
 
-        $pieChartData = [];
-
-        foreach ($statusMapping as $statusKey => $statusName) {
-            $pieChartData[$statusName] = $statusCounts[$statusKey] ?? 0;
-        }
-
-        return view('admin.dashboard', compact('data','barCharData','pieChartData'));
+        return view('admin.index', compact('totalSalesByDay','data','bestSellingProducts','latestOrders'));
     }
+
 }

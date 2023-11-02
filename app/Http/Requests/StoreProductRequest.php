@@ -41,7 +41,7 @@ class StoreProductRequest extends FormRequest
         return [
             'author_id.required' => 'Vui lòng chọn tên tác giả.', 
             'publisher_id.required' => 'Vui lòng chọn tên nhà xuất bản.', 
-            'category_id.required' => 'Vui lòng chọn tên danh mục.', 
+            'category_id.required' => 'Vui lòng chọn tên thể loại.', 
             'name.required' => 'Vui lòng nhập tên sách.',
             'product_code.required' => 'Vui lòng nhập mã sách.',
             'initial_price.required' => 'Vui lòng nhập giá.',

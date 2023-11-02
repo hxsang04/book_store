@@ -37,7 +37,11 @@
         </div>
         <div class="humberger__menu__cart">
             <ul>
-                <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                @if (Auth::check())
+                    <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i> <span>{{Auth::guard('web')->user()->favoriteProducts->count()}}</span></a></li>
+                @else
+                    <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i></a></li>
+                @endif
                 <li><a href="{{route('cart')}}"><i class="fa fa-shopping-basket"></i> <span>{{ session('cart') !== null ? count(session('cart')) : 0 }}</span></a></li>
             </ul>
             <div class="header__cart__price">item: <span>$150.00</span></div>
@@ -145,10 +149,14 @@
                 <div class="col-lg-3">
                     <div class="header__cart">
                         <ul>
-                            <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i> <span>1</span></a></li>
+                            @if (Auth::check())
+                                <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i> <span>{{Auth::guard('web')->user()->favoriteProducts->count()}}</span></a></li>
+                            @else
+                                <li><a href="{{route('favorite')}}"><i class="fa fa-heart"></i></a></li>
+                            @endif
                             <li><a href="{{route('cart')}}"><i class="fa fa-shopping-basket"></i> <span>{{ session('cart') !== null ? count(session('cart')) : 0 }}</span></a></li>
                         </ul>
-                        <div class="header__cart__price">Tổng tiền: <span>150,000đ</span></div>
+                        <div class="header__cart__price">Tổng tiền: <span>{{session('total_price') ?? 0}}đ</span></div>
                     </div>
                 </div>
             </div>
@@ -167,7 +175,7 @@
                     <div class="hero__categories">
                         <div class="hero__categories__all">
                             <i class="fa fa-bars"></i>
-                            <span>Tất cả danh mục</span>
+                            <span>Tất cả thể loại</span>
                         </div>
                         <ul>
                             @foreach($categories as $category)

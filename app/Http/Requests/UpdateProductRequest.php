@@ -39,7 +39,7 @@ class UpdateProductRequest extends FormRequest
         return [
             'author_id.required' => 'Vui lòng chọn tên tác giả.', 
             'publisher_id.required' => 'Vui lòng chọn tên nhà xuất bản.', 
-            'category_id.required' => 'Vui lòng chọn tên danh mục.', 
+            'category_id.required' => 'Vui lòng chọn tên thể loại.', 
             'name.required' => 'Vui lòng nhập tên sách.',
             'initial_price.required' => 'Vui lòng nhập giá.',
             'quantity.required' => 'Vui lòng nhập số lượng.',

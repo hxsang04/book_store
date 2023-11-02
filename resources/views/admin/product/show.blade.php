@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label class="form-label">Danh mục</label>
+                    <label class="form-label">Thể loại</label>
                     <input class="form-control" value="{{$product->category->name}}" disabled>
                 </div>
 

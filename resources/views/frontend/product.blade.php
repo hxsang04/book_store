@@ -61,7 +61,17 @@
                                 </div>
                             </div>
                             <button type="submit" class="primary-btn border-0">Thêm vào giỏ hàng</button>
-                            <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+
+                            @if (Auth::check())
+                                @if(Auth::guard('web')->user()->hasFavoritedProduct($product->id))
+                                    <a href="{{route('favorite.delete', $product)}}" class="heart-icon" style="color: #7fad39"><span class="icon_heart_alt"></span></a>
+                                @else
+                                    <a href="{{route('favorite.add', $product)}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                                @endif
+                            @else
+                            <a href="{{route('favorite.add', $product)}}" class="heart-icon"><span class="icon_heart_alt"></span></a>
+                            @endif
+
                             <ul>
                                 <li>
                                     <b>Tình trạng</b>
@@ -71,7 +81,7 @@
                                         <span class="text-danger">Hết hàng</span>
                                     @endif
                                 </li>
-                                <li><b>Danh mục</b> {{$product->category->name}}</li>
+                                <li><b>Thể loại</b> {{$product->category->name}}</li>
                                 <li><b>Tác giả</b> {{$product->author->name}}</li>
                                 <li><b>Nhà xuất bản</b>NXB {{$product->publisher->name}}</li>
                                 <li><b>Chính sách đổi trả</b>Đổi trả sản phẩm trong 30 ngày</li>
@@ -177,7 +187,15 @@
                                     <div class="product__discount__percent">-{{$product->discount}}%</div>
                                 @endif
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    @if (Auth::check())
+                                        @if(Auth::guard('web')->user()->hasFavoritedProduct($product->id))
+                                            <li class="active"><a href="{{route('favorite.delete', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                        @else
+                                            <li><a href="{{route('favorite.add', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                        @endif
+                                    @else
+                                    <li><a href="{{route('favorite.add', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                    @endif
                                     <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                     <li><a href="{{route('product', $product)}}"><i class="fa fa-eye"></i></a></li>
                                 </ul>

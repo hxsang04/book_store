@@ -1364,6 +1364,12 @@ ol {
 	border-color: #7fad39;
 }
 
+.product__item__pic__hover li.active a{
+	background: #7fad39;
+	border-color: #7fad39;
+	color: #ffffff;
+}
+
 .product__item__pic__hover li:hover a i {
 	color: #ffffff;
 	transform: rotate(360deg);

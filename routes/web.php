@@ -9,6 +9,9 @@ use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\StaffController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\PostTypeController;
+use App\Http\Controllers\Admin\PostController;
 
 use App\Http\Controllers\Frontend\ShopController;
 use App\Http\Controllers\Frontend\CartController;
@@ -35,6 +38,7 @@ Route::prefix('admin')->group(function () {
     Route::post('/login', [AuthController::class, 'loginPost'])->middleware(['guest:admin'])->name('admin.loginPost');
 
     Route::middleware(['auth:admin'])->group(function () {
+        Route::get('/dashboard', [DashboardController::class, 'index'] )->name('admin.dashboard');
 
         Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
         Route::get('/change-password', [AuthController::class, 'password'])->name('admin.password');
@@ -89,14 +93,27 @@ Route::prefix('admin')->group(function () {
         Route::get('/staff/create', [StaffController::class, 'create'])->name('staff.create');
         Route::post('/staff/create', [StaffController::class, 'store'])->name('staff.store');
         Route::get('/staff/destroy/{staff}', [StaffController::class, 'destroy'])->name('staff.destroy');
+
+        //Post Type
+        Route::get('/post_type', [PostTypeController::class, 'index'])->name('post_type.index');
+        Route::get('/post_type/create', [PostTypeController::class, 'create'])->name('post_type.create');
+        Route::post('/post_type/create', [PostTypeController::class, 'store'])->name('post_type.store');
+        Route::get('/post_type/edit/{post_type}', [PostTypeController::class, 'edit'])->name('post_type.edit');
+        Route::post('/post_type/edit/{post_type}', [PostTypeController::class, 'update'])->name('post_type.update');
+        Route::delete('/post_type/delete/{post_type}', [PostTypeController::class, 'destroy'])->name('post_type.destroy');
+
+        //Post
+        Route::get('/post', [PostController::class, 'index'])->name('post.index');
+        Route::post('/post', [PostController::class, 'index'])->name('post.search');
+        Route::get('/post/create', [PostController::class, 'create'])->name('post.create');
+        Route::post('/post/create', [PostController::class, 'store'])->name('post.store');
+        Route::get('/post/edit/{post}', [PostController::class, 'edit'])->name('post.edit');
+        Route::post('/post/edit/{post}', [PostController::class, 'update'])->name('post.update');
+        Route::get('/post/show/{post}', [PostController::class, 'show'])->name('post.show');
+        Route::delete('/post/delete/{post}', [PostController::class, 'destroy'])->name('post.destroy');
     });
     
 });
-
-Route::get('/admin/dashboard', function () {
-    return view('admin.index');
-});
-
 
 //Frontend
 
@@ -129,6 +146,8 @@ Route::middleware(['auth:web'])->group(function () {
     Route::get('/dang-xuat', [AuthUserController::class, 'logout'])->name('logout');
 
     Route::get('/yeu-thich', [FavoriteController::class, 'index'])->name('favorite');
+    Route::get('/yeu-thich/{product}', [FavoriteController::class, 'add'])->name('favorite.add');
+    Route::get('/yeu-thich/delete/{product_id}', [FavoriteController::class, 'delete'])->name('favorite.delete');
     
     Route::get('/dat-hang', [CheckoutController::class, 'index'])->name('checkout');
     Route::post('/checkout', [CheckoutController::class, 'checkout'])->name('checkoutPost');

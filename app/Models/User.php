@@ -61,4 +61,9 @@ class User extends Authenticatable implements CanResetPassword
         return $this->belongsToMany(Product::class, 'favorites', 'user_id', 'product_id');
     }
 
+    public function hasFavoritedProduct($productId)
+    {
+        return $this->favoriteProducts->contains($productId);
+    }
+
 }

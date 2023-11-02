@@ -30,7 +30,7 @@
                                     <h6 class="fw-semibold mb-0">Thứ tự</h6>
                                 </th>
                                 <th class="border-bottom-0">
-                                    <h6 class="fw-semibold mb-0">Tên / Danh mục</h6>
+                                    <h6 class="fw-semibold mb-0">Tên / Thể loại</h6>
                                 </th>
                                 <th class="border-bottom-0 text-center">
                                     <h6 class="fw-semibold mb-0">Mã sách</h6>

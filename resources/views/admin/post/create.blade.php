@@ -2,159 +2,78 @@
 
 @section('content')
     <style>
-    #container {
-        width: 1000px;
-        margin: 20px auto;
-    }
-    .ck-editor__editable[role="textbox"] {
-        /* editing area */
-        min-height: 400px;
-    }
-    .ck-content .image {
-        /* block images */
-        max-width: 80%;
-        margin: 20px auto;
-    }
+        #container {
+            width: 1000px;
+            margin: 20px auto;
+        }
+        .ck-editor__editable[role="textbox"] {
+            /* editing area */
+            min-height: 600px;
+        }
+        .ck-content .image {
+            /* block images */
+            max-width: 80%;
+            margin: 20px auto;
+        }
     </style>
-    
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Sản phẩm</h5>
-                <form method="POST" action="{{route('product.store')}}" enctype="multipart/form-data">
+                <h5 class="card-title fw-semibold mb-4">Bài viết</h5>
+                <form method="POST" action="{{route('post.store')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
-                        <label for="name" class="form-label">Tên 
-                            <span class="text-danger">*</span> 
-                        </label>
-                        <input type="text" class="form-control" name="name" id="name">
-                        @error('name')
+                        <label for="title" class="form-label">Tiêu đề</label>
+                        <input type="text" name="title" class="form-control" id="title">
+                        @error('title')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-
                     <div class="mb-3">
-                        <label for="product_code" class="form-label">Mã sách
-                            <span class="text-danger">*</span> 
-                        </label>
-                        <input type="text" class="form-control" name="product_code" id="product_code">
-                        @error('product_code')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="publisher" class="form-label">Nhà xuất bản
+                        <label for="post_type_id" class="form-label">Thể loại
                             <span class="text-danger">*</span>
                         </label>
-                        <select class="form-select" name="publisher_id" id="publisher">
-                            <option value="" disabled selected>--- Chọn nhà xuất bản ---</option>
-                            @foreach ($publishers as $publisher)
-                                <option value="{{$publisher->id}}">{{$publisher->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('publisher_id')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="author" class="form-label">Tác giả
-                            <span class="text-danger">*</span>
-                        </label>
-                        <select class="form-select" name="author_id" id="author">
-                            <option value="" disabled selected>--- Chọn tác giả ---</option>
-                            @foreach ($authors as $author)
-                                <option value="{{$author->id}}">{{$author->name}}</option>
-                            @endforeach
-                        </select>
-                        @error('author_id')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="category" class="form-label">Thể loại
-                            <span class="text-danger">*</span>
-                        </label>
-                        <select class="form-select" name="category_id" id="category">
+                        <select class="form-select" name="post_type_id" id="post_type_id">
                             <option value="" disabled selected>--- Chọn thể loại ---</option>
-                            @foreach ($categories as $category)
-                                <option value="{{$category->id}}">{{$category->name}}</option>
+                            @foreach ($post_types as $post_type)
+                                <option value="{{$post_type->id}}">{{$post_type->name}}</option>
                             @endforeach
                         </select>
-                        @error('category_id')
+                        @error('post_type_id')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-
                     <div class="mb-3">
-                        <label for="initial_price" class="form-label">Giá gốc
+                        <label for="content" class="form-label">Mô tả
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" class="form-control" name="initial_price" id="initial_price">
-                        @error('initial_price')
+                        <textarea class="form-control" name="content" id="content"></textarea>
+                        @error('content')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                     </div>
-
-                    <div class="mb-3">
-                        <label for="discount" class="form-label">Chiết khấu (%)</label>
-                        <input type="text" value="0" class="form-control" name="discount" id="discount">
-                        @error('discount')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Giá bán <small>(sau chiết khấu)</small>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="price" id="price" disabled readonly>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="quantity" class="form-label">Số lượng
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="number" class="form-control" name="quantity" id="quantity">
-                        @error('quantity')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Mô tả
-                            <span class="text-danger">*</span>
-                        </label>
-                        <textarea class="form-control" name="description" id="editor"></textarea>
-                        @error('description')
-                            <p class="text-danger">{{$message}}</p>
-                        @enderror
-                    </div>
-
                     <div class="mb-3">
                         <label class="form-label me-2">Hình ảnh
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="file" name="image" class="form-control" id="product-img" accept="image/*" />
-                        @error('image')
+                        <input type="file" name="thumbnail" class="form-control" id="product-img" accept="image/*" />
+                        @error('thumbnail')
                             <p class="text-danger">{{$message}}</p>
                         @enderror
 
                         <img id="imagePreview" class="m-3 rounded-1">
 
                     </div>
-
                     <button type="submit" class="btn btn-primary">Lưu</button>
                 </form>
             </div>
         </div>
     </div>
+
     <script src="https://cdn.ckeditor.com/ckeditor5/39.0.1/super-build/ckeditor.js"></script>
         
     <script>
-        CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+        CKEDITOR.ClassicEditor.create(document.getElementById("content"), {
             
             toolbar: {
                 items: [
@@ -277,5 +196,4 @@
             ]
         });
     </script>
-
 @endsection

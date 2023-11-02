@@ -4,7 +4,7 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Danh mục</h5>
+                <h5 class="card-title fw-semibold mb-4">Thể loại</h5>
                 <form method="POST" action="{{route('category.update', $category)}}">
                     @csrf
                     <div class="mb-3">

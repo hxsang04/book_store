@@ -11,8 +11,9 @@ use App\Models\Author;
 class ShopController extends Controller
 {
     public function index(){
+        $topSellingProducts = Product::orderByDesc('sold')->get()->take(8);
         $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
-        return view('frontend.index', compact('discountProducts'));
+        return view('frontend.index', compact('discountProducts','topSellingProducts'));
     }
 
     public function shop(Request $request){
@@ -61,6 +62,12 @@ class ShopController extends Controller
         $products = $products->when($arr_authors, function($query, $arr_authors){
             return $query->whereIn('author_id', $arr_authors);
         });
+
+        $min_price = $request->input('min_price');
+        $max_price = $request->input('max_price');
+
+        $products = ($min_price != null && $max_price != null) 
+                    ? $products->whereBetween('price', [$min_price, $max_price]) : $products;
 
         return $products;
     }

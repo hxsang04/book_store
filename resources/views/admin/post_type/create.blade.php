@@ -4,8 +4,8 @@
     <div class="container-fluid">
         <div class="card">
             <div class="card-body">
-                <h5 class="card-title fw-semibold mb-4">Thể loại</h5>
-                <form method="POST" action="{{route('category.store')}}">
+                <h5 class="card-title fw-semibold mb-4">Thể loại bài viết</h5>
+                <form method="POST" action="{{route('post_type.store')}}">
                     @csrf
                     <div class="mb-3">
                         <label for="name" class="form-label">Tên</label>

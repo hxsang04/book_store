@@ -64,11 +64,11 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="category" class="form-label">Danh mục
+                        <label for="category" class="form-label">Thể loại
                             <span class="text-danger">*</span>
                         </label>
                         <select class="form-select" name="category_id" id="category">
-                            <option value="" disabled selected>--- Chọn danh mục ---</option>
+                            <option value="" disabled selected>--- Chọn thể loại ---</option>
                             @foreach ($categories as $category)
                                 <option value="{{$category->id}}" {{$category->id == $product->category_id ? 'selected' : '' }}>{{$category->name}}</option>
                             @endforeach

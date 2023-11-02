@@ -3,20 +3,20 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
-use Illuminate\Http\Request;
+use App\Models\PostType;
 use Throwable;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Http\Request;
 
-class CategoryController extends Controller
+class PostTypeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $categories = Category::orderByDesc('id')->get();
-        return view('admin.category.list', compact('categories'));
+        $post_types = PostType::orderByDesc('id')->paginate(5);
+        return view('admin.post_type.list', compact('post_types'));
     }
 
     /**
@@ -24,7 +24,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('admin.category.create');
+        return view('admin.post_type.create');
     }
 
     /**
@@ -33,51 +33,42 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            'name' => 'required|unique:categories,name|string'
-        ], [
-            'name.required' => 'Vui lòng nhập tên thể loại.'
+            'name' => 'required|unique:post_types,name|string'
         ]);
         DB::beginTransaction();
         try {
-            Category::create($data);
+            PostType::create($data);
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('post_type.index');
         } catch (Throwable $e) {
             DB::rollback();
             throw $e;
         }
-        
+
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Category $category)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(PostType $post_type)
     {
-        return view('admin.category.edit', compact('category'));
+        return view('admin.post_type.edit', compact('post_type'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, PostType $post_type)
     {
         $data = $request->validate([
             'name' => 'required|string'
         ]);
         DB::beginTransaction();
         try {
-            $category->update($data);
+            $post_type->update($data);
             DB::commit();
-            return redirect()->route('category.index');
+            return redirect()->route('post_type.index');
         } catch (Throwable $e) {
             DB::rollback();
             throw $e;
@@ -87,9 +78,9 @@ class CategoryController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(PostType $post_type)
     {
-        $category->delete();
+        $post_type->delete();
         return redirect()->back()->with('success', 'Delete successfully!');
     }
 }

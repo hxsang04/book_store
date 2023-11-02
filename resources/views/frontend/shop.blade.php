@@ -28,7 +28,7 @@
                     <div class="col-lg-3 col-md-5">
                         <div class="sidebar">
                             <div class="sidebar__item">
-                                <h4>Danh mục</h4>
+                                <h4>Thể loại</h4>
                                 <ul>
                                     @foreach ($categories as $category)
                                         <li class="{{request()->segment(2) == $category->id ? 'active' : ''}} " ><a href="{{route('category', $category)}}">{{$category->name}}</a></li>
@@ -39,18 +39,21 @@
                                 <h4>Giá</h4>
                                 <div class="price-range-wrap">
                                     <div class="price-range ui-slider ui-corner-all ui-slider-horizontal ui-widget ui-widget-content"
-                                        data-min="10" data-max="540">
+                                        data-min="0" data-max="500000">
                                         <div class="ui-slider-range ui-corner-all ui-widget-header"></div>
                                         <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
                                         <span tabindex="0" class="ui-slider-handle ui-corner-all ui-state-default"></span>
+                                        
                                     </div>
                                     <div class="range-slider">
                                         <div class="price-input">
-                                            <input type="text" id="minamount">
-                                            <input type="text" id="maxamount">
+                                            <input type="text" id="minamount" name="min_price">
+                                            <input type="text" id="maxamount" name="max_price">
+                                            <span class="text-danger"><b>(đ)</b></span>
                                         </div>
                                     </div>
                                 </div>
+                                <button type="submit" class="btn text-white mt-2 px-3" style="background: #7fad39">Lọc</button>
                             </div>
                             <div class="sidebar__item">
                                 <h4>Nhà xuất bản</h4>
@@ -185,7 +188,15 @@
                                                 <div class="product__discount__percent">-{{$product->discount}}%</div>
                                             @endif
                                             <ul class="product__item__pic__hover">
-                                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                                @if (Auth::check())
+                                                    @if(Auth::guard('web')->user()->hasFavoritedProduct($product->id))
+                                                        <li class="active"><a href="{{route('favorite.delete', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                                    @else
+                                                        <li><a href="{{route('favorite.add', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                                    @endif
+                                                @else
+                                                <li><a href="{{route('favorite.add', $product)}}"><i class="fa fa-heart"></i></a></li>
+                                                @endif
                                                 <li><a href="{{route('cart.add', $product)}}"><i class="fa fa-shopping-cart"></i></a></li>
                                                 <li><a href="{{route('product', $product)}}"><i class="fa fa-eye"></i></a></li>
                                             </ul>

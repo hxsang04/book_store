@@ -33,7 +33,7 @@
                             <span class="hide-menu">Quản lý</span>
                         </li>
                         <li class="sidebar-item">
-                            <a class="sidebar-link" href="./index.html" aria-expanded="false">
+                            <a class="sidebar-link" href="{{route('admin.dashboard')}}" aria-expanded="false">
                                 <span>
                                     <i class="ti ti-dashboard"></i>
                                 </span>
@@ -45,7 +45,7 @@
                                 <span>
                                     <i class="ti ti-category"></i>
                                 </span>
-                                <span class="hide-menu">Danh mục</span>
+                                <span class="hide-menu">Thể loại sách</span>
                             </a>
                         </li>
                         <li class="sidebar-item">
@@ -94,6 +94,22 @@
                                     <i class="ti ti-users"></i>
                                 </span>
                                 <span class="hide-menu">Khách hàng</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('post_type.index')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-category"></i>
+                                </span>
+                                <span class="hide-menu">Thể loại bài viết</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item">
+                            <a class="sidebar-link" href="{{route('post.index')}}" aria-expanded="false">
+                                <span>
+                                    <i class="ti ti-ballpen"></i>
+                                </span>
+                                <span class="hide-menu">Bài viết</span>
                             </a>
                         </li>
                         <li class="nav-small-cap">
@@ -181,6 +197,7 @@
     <script src="/assets/admin/libs/simplebar/dist/simplebar.js"></script>
     <script src="/assets/admin/js/dashboard.js"></script>
     <script src="/assets/admin/js/my_script.js"></script>
+    @stack('js')
 </body>
 
 </html>
