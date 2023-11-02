@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->string('thumbnail');
             $table->longText('content');
+            $table->integer('view')->default(0);
             $table->timestamps();
 
             $table->foreign('post_type_id')->references('id')->on('post_types')->onDelete('cascade');
