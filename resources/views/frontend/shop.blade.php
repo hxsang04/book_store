@@ -81,66 +81,20 @@
                             </div>
                             <div class="sidebar__item">
                                 <div class="latest-product__text">
-                                    <h4>Latest Products</h4>
-                                    <div class="latest-product__slider owl-carousel">
-                                        <div class="latest-prdouct__slider__item">
-                                            <a href="#" class="latest-product__item">
+                                    <h4>Bán chạy trong tuần</h4>
+                                    <div class="latest-prdouct__slider__item">
+                                        @foreach ($topProducts as $product)
+                                            <a href="{{route('product', $product)}}" class="latest-product__item">
                                                 <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-1.jpg" alt="">
+                                                    <img src="{{$product->image}}" alt="" width="100">
                                                 </div>
                                                 <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
+                                                    <h6>{{$product->name}}</h6>
+                                                    <span>{{convertPrice($product->price)}}đ</span>
+                                                    <div class="text-warning">Đã bán {{$product->totalSold}}</div>
                                                 </div>
                                             </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-2.jpg" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-3.jpg" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                        </div>
-                                        <div class="latest-prdouct__slider__item">
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-1.jpg" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-2.jpg" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                            <a href="#" class="latest-product__item">
-                                                <div class="latest-product__item__pic">
-                                                    <img src="/assets/frontend/img/latest-product/lp-3.jpg" alt="">
-                                                </div>
-                                                <div class="latest-product__item__text">
-                                                    <h6>Crab Pool Security</h6>
-                                                    <span>$30.00</span>
-                                                </div>
-                                            </a>
-                                        </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +127,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="filter__found">
-                                        <h6 class="text-right"><span>16</span> Products found</h6>
+                                        <h6 class="text-right">Hiển thị {{$products->firstItem()}} đến {{$products->lastItem()}} trong {{$products->total()}} sản phẩm</h6>
                                     </div>
                                 </div>
                             </div>

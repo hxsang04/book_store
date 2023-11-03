@@ -61,7 +61,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
 
-                        <img id="imagePreview" class="m-3 rounded-1" src="{{$post->thumbnail}}">
+                        <img id="imagePreview" class="m-3 rounded-1" src="{{$post->thumbnail}}" width="250">
 
                     </div>
                     <button type="submit" class="btn btn-primary">Cập nhật</button>

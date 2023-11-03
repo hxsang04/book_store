@@ -7,13 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\Author;
+use App\Models\Post;
 
 class ShopController extends Controller
 {
     public function index(){
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(8);
         $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
-        return view('frontend.index', compact('discountProducts','topSellingProducts'));
+        $newPosts = Post::orderByDesc('id')->limit(3)->get();
+        return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts'));
     }
 
     public function shop(Request $request){

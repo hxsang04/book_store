@@ -42,7 +42,7 @@
                                         <tr>
                                             <td class="shoping__cart__item">
                                                 <img src="{{$item['image']}}" alt="" width="100">
-                                                <a href="{{route('product', $product)}}">
+                                                <a href="{{route('product', $item['product_id'])}}">
                                                     <h5>{{$item['name']}}</h5>
                                                 </a>
                                             </td>

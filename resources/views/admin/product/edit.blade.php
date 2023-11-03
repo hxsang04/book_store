@@ -132,7 +132,7 @@
                             <p class="text-danger">{{$message}}</p>
                         @enderror
                         
-                        <img id="imagePreview" class="m-3 rounded-1" src="{{$product->image}}">
+                        <img id="imagePreview" class="m-3 rounded-1" src="{{$product->image}}" width="100">
                     </div>
 
                     <button type="submit" class="btn btn-primary">Lưu</button>

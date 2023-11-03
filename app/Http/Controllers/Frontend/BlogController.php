@@ -16,6 +16,8 @@ class BlogController extends Controller
 
     public function blogDetail(Post $post){
         $topPosts = Post::orderByDesc('view')->limit(5)->get();
+        $post->view +=1;
+        $post->save();
         return view('frontend.blog-details', compact('post','topPosts'));
     }
 }

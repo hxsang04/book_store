@@ -59,7 +59,7 @@
                 <div class="mb-3">
                     <label class="form-label me-2">Hình ảnh</label>
                     <div>
-                        <img class="m-2 rounded-1" src="{{$product->image}}">
+                        <img class="m-2 rounded-1" src="{{$product->image}}" width="100">
                     </div>
                 </div>
             </div>

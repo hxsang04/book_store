@@ -30,7 +30,7 @@
                 <form action="{{route('checkoutPost')}}" method="POST">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-7 col-md-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="checkout__input">
                                 <p>Họ và tên<span>*</span></p>
                                 <input type="text" name="name" value="{{Auth::guard('web')->user()->name}}">
@@ -52,7 +52,7 @@
                                 <input type="text" name="note">
                             </div>
                         </div>
-                        <div class="col-lg-5 col-md-6">
+                        <div class="col-lg-6 col-md-6">
                             <div class="checkout__order">
                                 <h4>Chi tiết đơn hàng</h4>
                                 <div class="checkout__order__products">Sản phẩm <span>Tổng</span></div>

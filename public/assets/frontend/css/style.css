@@ -1002,12 +1002,12 @@ ol {
 
 .latest-product__item__pic {
 	float: left;
-	margin-right: 26px;
+	margin-right: 15px;
 }
 
 .latest-product__item__pic img {
-	height: 110px;
-	width: 110px;
+	height: auto;
+	width: 70px;
 }
 
 .latest-product__item__text {

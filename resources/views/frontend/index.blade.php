@@ -9,9 +9,9 @@
                 <div class="col-lg-12">
                     <div class="hero__item set-bg" data-setbg="/assets/frontend/img/hero/banner-2.jpg">
                         <div class="hero__text">
-                            <span>FRUIT FRESH</span>
-                            <h2>Vegetable <br />100% Organic</h2>
-                            <p>Free Pickup and Delivery Available</p>
+                            <span>Max Book</span>
+                            <h2>Giảm giá tới <br> 25% cho đơn hàng</h2>
+                            <p>Đặt hàng và giao hàng miễn phí ngay hôm nay</p>
                             <a href="{{route('shop')}}" class="primary-btn">Mua ngay</a>
                         </div>
                     </div>
@@ -119,12 +119,12 @@
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/assets/frontend/img/banner/banner-1.jpg" alt="">
+                        <img src="/assets/frontend/img/banner/banner-1.png" alt="">
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6 col-sm-6">
                     <div class="banner__pic">
-                        <img src="/assets/frontend/img/banner/banner-2.jpg" alt="">
+                        <img src="/assets/frontend/img/banner/banner-2.png" alt="">
                     </div>
                 </div>
             </div>
@@ -347,51 +347,23 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-1.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Cooking tips make cooking simple</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-2.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">6 ways to prepare breakfast for 30</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
+                @foreach ($newPosts as $post)
+                    <div class="col-lg-4 col-md-4 col-sm-6">
+                        <div class="blog__item">
+                            <div class="blog__item__pic">
+                                <img src="{{$post->thumbnail}}" alt="">
+                            </div>
+                            <div class="blog__item__text">
+                                <ul>
+                                    <li><i class="fa fa-calendar-o"></i> {{date_format($post->created_at, 'd/m/Y')}}</li>
+                                    <li><i class="fa fa-eye"></i> {{$post->view}}</li>
+                                </ul>
+                                <h5><a href="{{route('blog.detail', $post)}}">{{$post->title}}</a></h5>
+                                <p>{{$post->shortContent($post->content)}}</p>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-4 col-sm-6">
-                    <div class="blog__item">
-                        <div class="blog__item__pic">
-                            <img src="/assets/frontend/img/blog/blog-3.jpg" alt="">
-                        </div>
-                        <div class="blog__item__text">
-                            <ul>
-                                <li><i class="fa fa-calendar-o"></i> May 4,2019</li>
-                                <li><i class="fa fa-comment-o"></i> 5</li>
-                            </ul>
-                            <h5><a href="#">Visit the clean farm in the US</a></h5>
-                            <p>Sed quia non numquam modi tempora indunt ut labore et dolore magnam aliquam quaerat </p>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>

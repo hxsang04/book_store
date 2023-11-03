@@ -61,7 +61,7 @@
             <ul>
                 <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
                 <li><a href="./shop-grid.html">Cửa hàng</a></li>
-                <li><a href="#">Pages</a>
+                <li><a href="#">Tác giả</a>
                     <ul class="header__menu__dropdown">
                         <li><a href="./shop-details.html">Shop Details</a></li>
                         <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -133,7 +133,7 @@
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
                             <li><a href="{{route('shop')}}">Cửa hàng</a></li>
-                            <li><a href="#">Pages</a>
+                            <li><a href="#">Tác giả</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
