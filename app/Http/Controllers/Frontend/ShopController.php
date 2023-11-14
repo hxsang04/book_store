@@ -15,7 +15,8 @@ class ShopController extends Controller
         $topSellingProducts = Product::orderByDesc('sold')->get()->take(8);
         $discountProducts = Product::where('discount', '>', 0)->orderByDesc('id')->limit(10)->get();
         $newPosts = Post::orderByDesc('id')->limit(3)->get();
-        return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts'));
+        $latestProducts = Product::orderByDesc('id')->limit(8)->get();
+        return view('frontend.index', compact('discountProducts','topSellingProducts', 'newPosts', 'latestProducts'));
     }
 
     public function shop(Request $request){
@@ -41,6 +42,15 @@ class ShopController extends Controller
     public function getProductByCategory(Category $category, Request $request){
         
         $products = Product::where('category_id',$category->id);
+        $products = $this->filter($products, $request);
+        $products = $this->sortByAndPaginate($products, $request);
+
+        return view('frontend.shop',compact('products'));
+    }
+
+    public function getProductByAuthor(Author $author, Request $request){
+        
+        $products = Product::where('author_id',$author->id);
         $products = $this->filter($products, $request);
         $products = $this->sortByAndPaginate($products, $request);
 

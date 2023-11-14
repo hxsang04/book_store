@@ -7,7 +7,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ogani | Template</title>
+    <title>Max book | Bán sách trực tuyến</title>
 
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
     <div class="humberger__menu__overlay"></div>
     <div class="humberger__menu__wrapper">
         <div class="humberger__menu__logo">
-            <a href="#"><img src="/assets/frontend/img/logo.png" alt=""></a>
+            <a href="/"><img src="/assets/frontend/img/logo.png" alt=""></a>
         </div>
         <div class="humberger__menu__cart">
             <ul>
@@ -60,13 +60,12 @@
         <nav class="humberger__menu__nav mobile-menu">
             <ul>
                 <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
-                <li><a href="./shop-grid.html">Cửa hàng</a></li>
+                <li><a href="{{route('shop')}}">Cửa hàng</a></li>
                 <li><a href="#">Tác giả</a>
                     <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
+                        @foreach ($authors as $author)
+                        	<li><a href="{{route('author', $author)}}">{{$author->name}}</a></li>
+                        @endforeach
                     </ul>
                 </li>
                 <li><a href="{{route('blog')}}">Bài viết</a></li>
@@ -125,24 +124,23 @@
             <div class="row">
                 <div class="col-lg-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="/assets/frontend/img/logo.png" alt=""></a>
+                        <a href="/"><img src="/assets/frontend/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li class="active"><a href="{{route('home')}}">Trang chủ</a></li>
-                            <li><a href="{{route('shop')}}">Cửa hàng</a></li>
-                            <li><a href="#">Tác giả</a>
+                            <li class="{{request()->is('/') ? 'active' : '' }}"><a href="{{route('home')}}">Trang chủ</a></li>
+                            <li class="{{request()->segment(1) === 'cua-hang' ? 'active' : '' }}" ><a href="{{route('shop')}}">Cửa hàng</a></li>
+                            <li class=" {{request()->segment(1) === 'tac-gia' ? 'active' : '' }}" ><a href="#">Tác giả</a>
                                 <ul class="header__menu__dropdown">
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    @foreach ($authors as $author)
+                                        <li><a href="{{route('author', $author)}}">{{$author->name}}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
-                            <li><a href="{{route('blog')}}">Bài viết</a></li>
-                            <li><a href="{{route('contact')}}">Liên hệ</a></li>
+                            <li class=" {{request()->segment(1) === 'bai-viet' ? 'active' : '' }}"><a href="{{route('blog')}}">Bài viết</a></li>
+                            <li class=" {{request()->segment(1) === 'lien-he' ? 'active' : '' }}" ><a href="{{route('contact')}}">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -228,32 +226,23 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
                     <div class="footer__widget">
-                        <h6>Useful Links</h6>
+                        <h6>Hỗ trợ khách hàng</h6>
                         <ul>
-                            <li><a href="#">About Us</a></li>
-                            <li><a href="#">About Our Shop</a></li>
-                            <li><a href="#">Secure Shopping</a></li>
-                            <li><a href="#">Delivery infomation</a></li>
-                            <li><a href="#">Privacy Policy</a></li>
-                            <li><a href="#">Our Sitemap</a></li>
-                        </ul>
-                        <ul>
-                            <li><a href="#">Who We Are</a></li>
-                            <li><a href="#">Our Services</a></li>
-                            <li><a href="#">Projects</a></li>
-                            <li><a href="#">Liên hệ</a></li>
-                            <li><a href="#">Innovation</a></li>
-                            <li><a href="#">Testimonials</a></li>
+                            <li><a href="#">Hướng dẫn mua hàng</a></li>
+                            <li><a href="#">Chính sách sản phẩm</a></li>
+                            <li><a href="#">Chính sách vận chuyển</a></li>
+                            <li><a href="#">Chính sách đổi trả & bảo hành</a></li>
+                            <li><a href="#">Chính sách bảo mật</a></li>
                         </ul>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-12">
                     <div class="footer__widget">
-                        <h6>Join Our Newsletter Now</h6>
-                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <h6>Nhận thông báo ưu đãi</h6>
+                        <p>Nhận thông tin cập nhật qua e-mail về các ưu đãi đặc biệt.</p>
                         <form action="#">
-                            <input type="text" placeholder="Enter your mail">
-                            <button type="submit" class="site-btn">Subscribe</button>
+                            <input type="text" placeholder="Nhập địa chỉ email">
+                            <button type="submit" class="site-btn">Đăng ký</button>
                         </form>
                         <div class="footer__widget__social">
                             <a href="#"><i class="fa fa-facebook"></i></a>
@@ -268,12 +257,9 @@
                 <div class="col-lg-12">
                     <div class="footer__copyright">
                         <div class="footer__copyright__text">
-                            <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                            <p>
                                 Copyright &copy;
-                                <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                                template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a
-                                    href="https://colorlib.com" target="_blank">Colorlib</a>
-                                <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                                <script>document.write(new Date().getFullYear());</script> All rights reserved 
                             </p>
                         </div>
                         <div class="footer__copyright__payment"><img src="/assets/frontend/img/payment-item.png" alt=""></div>

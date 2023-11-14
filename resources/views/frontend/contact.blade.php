@@ -34,21 +34,21 @@
                     <div class="contact__widget">
                         <span class="icon_pin_alt"></span>
                         <h4>Địa chỉ</h4>
-                        <p>60-49 Road 11378 New York</p>
+                        <p>207 Giải Phóng, Đồng Tâm, Hai Bà Trưng, Hà Nội</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_clock_alt"></span>
                         <h4>Thời gian mở cửa</h4>
-                        <p>08:00 AM to 22:00 PM</p>
+                        <p>08:00 AM đến 22:00 PM</p>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 text-center">
                     <div class="contact__widget">
                         <span class="icon_mail_alt"></span>
                         <h4>Địa chỉ Email</h4>
-                        <p>contact@klever.fruit.com</p>
+                        <p>bookstore@yomail.com</p>
                     </div>
                 </div>
             </div>
@@ -58,19 +58,7 @@
 
     <!-- Map Begin -->
     <div class="map">
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d49116.39176087041!2d-86.41867791216099!3d39.69977417971648!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x886ca48c841038a1%3A0x70cfba96bf847f0!2sPlainfield%2C%20IN%2C%20USA!5e0!3m2!1sen!2sbd!4v1586106673811!5m2!1sen!2sbd"
-            height="500" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
-        <div class="map-inside">
-            <i class="icon_pin"></i>
-            <div class="inside-widget">
-                <h4>New York</h4>
-                <ul>
-                    <li>Phone: +12-345-6789</li>
-                    <li>Add: 16 Creek Ave. Farmingdale, NY</li>
-                </ul>
-            </div>
-        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3724.843007948113!2d105.84553129999999!3d20.998929299999997!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3135ad587ef075ef%3A0x6164985f7a33e94a!2zTmjDoCBzw6FjaCBORVVCb29rIC0gVHLGsOG7nW5nIMSQ4bqhaSBo4buNYyBLaW5oIHThur8gUXXhu5FjIGTDom4gKE5FVSk!5e0!3m2!1svi!2s!4v1699945615567!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <!-- Map End -->
 

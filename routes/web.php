@@ -121,6 +121,7 @@ Route::prefix('admin')->group(function () {
 Route::get('/', [ShopController::class, 'index'])->name('home');
 Route::get('/cua-hang', [ShopController::class, 'shop'])->name('shop');
 Route::get('/danh-muc/{category}', [ShopController::class, 'getProductByCategory'])->name('category');
+Route::get('/tac-gia/{author}', [ShopController::class, 'getProductByAuthor'])->name('author');
 Route::get('/san-pham/{product}', [ShopController::class, 'product'])->name('product');
 Route::get('/lien-he', [ShopController::class, 'contact'])->name('contact');
 
