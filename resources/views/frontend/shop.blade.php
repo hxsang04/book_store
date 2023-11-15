@@ -90,7 +90,7 @@
                                                 </div>
                                                 <div class="latest-product__item__text">
                                                     <h6>{{$product->name}}</h6>
-                                                    <span>{{convertPrice($product->price)}}đ</span>
+                                                    <span>{{convertPrice($product->price)}}</span>
                                                     <div class="text-warning">Đã bán {{$product->totalSold}}</div>
                                                 </div>
                                             </a>
