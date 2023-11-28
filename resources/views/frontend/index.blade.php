@@ -101,7 +101,7 @@
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
-                                <span>{{$product->category->name}}</span>
+                                <span class="text-warning" style="font-size: 16px; font-weight: 600">Đã bán {{$product->sold}}</span>
                                 <h5><a href="{{route('product', $product)}}">{{$product->name}}</a></h5>
                                 <div class="product__item__price">{{convertPrice($product->price)}}<span>{{convertPrice(initialPrice($product->price, $product->discount))}}</span></div>
                             </div>
