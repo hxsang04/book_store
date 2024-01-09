@@ -77,7 +77,7 @@
                     <div class="card-body">
                         <div class="d-sm-flex d-block align-items-center justify-content-between mb-9">
                             <div class="mb-3 mb-sm-0">
-                                <h5 class="card-title fw-semibold">Daonh số bán hàng</h5>
+                                <h5 class="card-title fw-semibold">Doanh số bán hàng</h5>
                             </div>
                             <form>
                                 <select name="month" class="form-select" onchange="this.form.submit()">
