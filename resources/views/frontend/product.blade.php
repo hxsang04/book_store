@@ -84,7 +84,6 @@
                                 <li><b>Thể loại</b> {{$product->category->name}}</li>
                                 <li><b>Tác giả</b> {{$product->author->name}}</li>
                                 <li><b>Nhà xuất bản</b>NXB {{$product->publisher->name}}</li>
-                                <li><b>Chính sách đổi trả</b>Đổi trả sản phẩm trong 30 ngày</li>
                                 <li><b>Chia sẻ</b>
                                     <div class="share">
                                         <a href="#"><i class="fa fa-facebook"></i></a>
@@ -96,6 +95,9 @@
                             </ul>
                         </div>
                     </form>
+                </div>
+                <div class="col-lg-3 d-md-none d-none d-sm-none d-xl-block">
+                    <img src="{{asset('assets/frontend/img/banner/banner_3.png')}}" alt="">
                 </div>
                 <div class="col-lg-12">
                     <div class="product__details__tab">
